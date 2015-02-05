@@ -11,43 +11,43 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UDPServerThread extends Thread implements SyncronNetwork {
-	ServerController				controller			= ServerController.getInstance();
+	ServerController controller = ServerController.getInstance();
 	// [General]
 	// to display time
-	private SimpleDateFormat		sdf;
-	private long					lastReceivedTime;
+	private SimpleDateFormat sdf;
+	private long             lastReceivedTime;
 
 	// [UDP] Socket
-	public static Thread			udpThread			= null;
-	public static DatagramSocket	udpSocket			= null;
+	public static          Thread         udpThread       = null;
+	public static          DatagramSocket udpSocket       = null;
 	// ip of server to send to
-	public static InetAddress		receiverAddress		= null;
-	public static InetAddress		returnIP			= null;
+	public static          InetAddress    receiverAddress = null;
+	public static          InetAddress    returnIP        = null;
 	// 49 bytes in typical formated 12 value analog data string //
-	// "0123456789".getBytes(); 
-	public static boolean[]			digiInput			= new boolean[10];
-	public static boolean[]			digiOutput			= new boolean[10];
-	public static volatile boolean	newDataAvail		= false;
-	public static volatile boolean	isRunning			= false;
+	// "0123456789".getBytes();
+	public static          boolean[]      digiInput       = new boolean[10];
+	public static          boolean[]      digiOutput      = new boolean[10];
+	public static volatile boolean        newDataAvail    = false;
+	public static volatile boolean        isRunning       = false;
 
-	public static int				UdpOutBufferLength	= 50;
-	public static byte[]			UdpOutBuffer		= new byte[UdpOutBufferLength];
+	public static int    UdpOutBufferLength = 50;
+	public static byte[] UdpOutBuffer       = new byte[UdpOutBufferLength];
 
-	public static int				UdpBufferLength		= 49;
-	public static byte[]			UdpBuffer			= new byte[UdpBufferLength];
-	public static byte[]			UdpBuffer1			= new byte[UdpBufferLength];
-	public static int				udpPort				= 10000;							// arbitrary
-	public static int				returnPort			= 10005;							// arbitrary
+	public static int    UdpBufferLength = 49;
+	public static byte[] UdpBuffer       = new byte[UdpBufferLength];
+	public static byte[] UdpBuffer1      = new byte[UdpBufferLength];
+	public static int    udpPort         = 10000;                            // arbitrary
+	public static int    returnPort      = 10005;                            // arbitrary
 
-	public static NodeMsgData		nodeMsgData			= new NodeMsgData();
+	public static NodeMsgData nodeMsgData = new NodeMsgData();
 
-	public static String			serverIP			= "192.168.1.109";
-	public static String			syncronIP			= "192.163.250.179";
-	public static String			IP					= syncronIP;
+	public static String serverIP         = "192.168.1.109";
+	public static String syncronIP        = "192.163.250.179";
+	public static String IP               = syncronIP;
 	// UDP Processing
-	public static int[]				analogVals			= null;
-	public static int				databaseDelay		= 5 * 60* 1000; // minutes
-	public static Thread			dbInjectorThread	= null;
+	public static int[]  analogVals       = null;
+	public static int    databaseDelay    = 5 * 60 * 1000; // minutes
+	public static Thread dbInjectorThread = null;
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////
 	// [UDP]
@@ -66,7 +66,7 @@ public class UDPServerThread extends Thread implements SyncronNetwork {
 
 
 	/**
-	 * 
+	 *
 	 */
 	private void startDatabaseInjection() {
 
@@ -85,22 +85,21 @@ public class UDPServerThread extends Thread implements SyncronNetwork {
 							String end = ";";
 							for (int i = 0; i < vals.length; i++) {
 								end = i == (vals.length - 1) ? ";" : ", ";
-								query += String.format("('Analog_%s',%s)%s", i, vals[i],end);
+								query += String.format("('Analog_%s',%s)%s", i, vals[i], end);
 //								query += String.format("INSERT INTO `DataLive`(`device_name`, `live_value`) VALUES ('Analog_%s',%s)%s", i, vals[i],end);
 							}
 							System.out.println((new SimpleDateFormat("[MMM-dd HH.mm.ss.SSS]")).format(new Date()) + "data insert into Db");
 							//System.out.println(query);
 							sql.insertQuery(query);
 						}
-						newDataAvail=false;
+						newDataAvail = false;
 
-						
-						
+
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println((new SimpleDateFormat("[MMM-dd HH.mm.ss.SSS]")).format(new Date())
-										+ "  -> [UDPServerThread.startDatabaseInjection().new Thread() {...}::run]");
+					                   + "  -> [UDPServerThread.startDatabaseInjection().new Thread() {...}::run]");
 
 				}
 			}
@@ -179,7 +178,7 @@ public class UDPServerThread extends Thread implements SyncronNetwork {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void setLastReceivedTime() {
 		lastReceivedTime = System.currentTimeMillis();

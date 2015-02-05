@@ -9,8 +9,8 @@ import sql.mysql.SocketMySql;
 
 public class MySqlMachine {
 
-	DbDataObject	dbData;
-	String			query;
+	DbDataObject dbData;
+	String       query;
 
 	// public static void main(String[] args) throws SQLException {
 
@@ -30,7 +30,7 @@ public class MySqlMachine {
 		}
 
 	}
-	
+
 
 	public MySqlMachine(String query) throws SQLException {
 
@@ -47,7 +47,8 @@ public class MySqlMachine {
 			// dbData.printData();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("[ERROR - " + (new SimpleDateFormat("HH:mm:ss")).format(new Date()) + "] -> [MySqlMachine::MySqlMachine] SQLException");
+			System.out.println(
+					"[ERROR - " + (new SimpleDateFormat("HH:mm:ss")).format(new Date()) + "] -> [MySqlMachine::MySqlMachine] SQLException");
 		} catch (Exception e) {
 			System.out.println("[ERROR - " + (new SimpleDateFormat("HH:mm:ss")).format(new Date()) + "] -> [MySqlMachine::MySqlMachine] Exception");
 
@@ -60,8 +61,8 @@ public class MySqlMachine {
 	public DbDataObject getDbData() {
 		return dbData;
 	}
-	
-	public synchronized void insertQuery( String query) {
+
+	public synchronized void insertQuery(String query) {
 		try {
 			SocketMySql sql = new SocketMySql();
 			sql.insertQuery(query);

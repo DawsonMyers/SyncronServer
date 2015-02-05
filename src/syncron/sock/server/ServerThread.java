@@ -18,42 +18,42 @@ import syncron.controller.ServerController;
 public class ServerThread extends Thread {
 
 	// Analog input values
-	public static int[]				analogVals		= null;
-	public static int				msgCount		= 0;
+	public static int[] analogVals = null;
+	public static int   msgCount   = 0;
 
 	// Digital inputs/outputs
-	public static boolean[]			digitalInput	= new boolean[10];
+	public static boolean[] digitalInput = new boolean[10];
 
-	public static boolean[]			digitalOutput	= new boolean[10];
+	public static boolean[] digitalOutput = new boolean[10];
 	// Message intent member that will store the protocol constant
 
 	// a unique ID for each connection
-	private static int				uniqueId;
+	private static int                     uniqueId;
 	// an ArrayList to keep the list of the Client
-	private ArrayList<ClientThread>	al;
+	private        ArrayList<ClientThread> al;
 
 	// to display time
-	public static SimpleDateFormat		sdf;
+	public static SimpleDateFormat sdf;
 	// the port number to listen for connection
-	private int						port;
+	private       int              port;
 	// the boolean that will be turned of to stop the server
-	private boolean					keepGoing;
+	private       boolean          keepGoing;
 
 	// [UDP] Socket
-	public static String			mAnalogString	= null;
-	public static UDPServerThread	udpThread		= null;
-	public static Thread			udpThreadHelper	= null;
-	public static DatagramSocket	udpSocket		= null;
+	public static String          mAnalogString   = null;
+	public static UDPServerThread udpThread       = null;
+	public static Thread          udpThreadHelper = null;
+	public static DatagramSocket  udpSocket       = null;
 	// ip of server to send to
-	public static InetAddress		receiverAddress	= null;
+	public static InetAddress     receiverAddress = null;
 	// 49 bytes in typical formated 12 value analog data string //
 	// "0123456789".getBytes();
-	public static int				UdpBufferLength	= 49;
-	public static byte[]			UdpBuffer		= new byte[UdpBufferLength];
-	public static byte[]			UdpOutputBuffer	= new byte[10];
-	public static int				udpPort			= 10000;						// arbitrary
-	public static String			serverIP		= "192.168.1.109";
-	public static String			syncronIP		= "192.163.250.179";
+	public static int             UdpBufferLength = 49;
+	public static byte[]          UdpBuffer       = new byte[UdpBufferLength];
+	public static byte[]          UdpOutputBuffer = new byte[10];
+	public static int             udpPort         = 10000;                        // arbitrary
+	public static String          serverIP        = "192.168.1.109";
+	public static String          syncronIP       = "192.163.250.179";
 	ServerController controller = ServerController.getInstance();
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////
 	// [UDP]
@@ -66,7 +66,7 @@ public class ServerThread extends Thread {
 
 	public ServerThread() {
 		super("ServerThread");
-		  
+
 		// udpThread = new UDPServerThread(UdpBuffer);
 		// udpThread.start();
 		// startDebugInput();
@@ -156,7 +156,7 @@ public class ServerThread extends Thread {
 			// I was asked to stop
 			try {
 				serverSocket.close();
-				 
+
 				for (int i = 0; i < al.size(); ++i) {
 					ClientThread tc = al.get(i);
 					try {
@@ -176,7 +176,7 @@ public class ServerThread extends Thread {
 			String msg = sdf.format(new Date()) + " Exception on new ServerSocket: " + e + "\n";
 			// display(msg);
 		} finally {
-			
+
 			synchronized (this) {
 
 				try {
@@ -199,8 +199,7 @@ public class ServerThread extends Thread {
 	}
 
 	/**
-	 * @param analogString
-	 *            the analogString to set
+	 * @param analogString the analogString to set
 	 */
 	public static synchronized void setAnalogString(String analogString) {
 		mAnalogString = analogString;

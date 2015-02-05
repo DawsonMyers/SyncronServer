@@ -10,14 +10,14 @@ import java.util.Date;
 
 public class RunServer {
 	static// server;
-	long							dateStarted;
-	static long						dateNow;
-	public static int				UdpBufferLength	= 49;
-	public static byte[]			UdpBuffer		= new byte[UdpBufferLength];
-	Date							dateLast;
-	Date							date;
-	ServerController				controller		= ServerController.getInstance();
-	private static SimpleDateFormat	sdf;
+			long dateStarted;
+	static long dateNow;
+	public static int    UdpBufferLength = 49;
+	public static byte[] UdpBuffer       = new byte[UdpBufferLength];
+	Date dateLast;
+	Date date;
+	ServerController controller = ServerController.getInstance();
+	private static SimpleDateFormat sdf;
 
 	RunServer() {
 
@@ -56,7 +56,7 @@ public class RunServer {
 		try {
 			MessageServerThread msgServer = null;
 			try {
-				  msgServer = new MessageServerThread();
+				msgServer = new MessageServerThread();
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("[ERROR - " + SyncUtils.getDate() + "] -> [RunServer::waitForServerQuit]TYPE = Exception | VAR = e");

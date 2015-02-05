@@ -15,27 +15,27 @@ import java.util.Date;
 // import socketExample.MsgObject;
 
 public class ClientThread extends Thread {
-	public final int	TEST		= 0, STATUS = 2, SUCCESS = 10, FAIL = 11, QUIT = 20;
-	public final int	SQL			= 20, TESTSQL = 21, STREAM = 30;
+	public final int TEST = 0, STATUS = 2, SUCCESS = 10, FAIL = 11, QUIT = 20;
+	public final int SQL = 20, TESTSQL = 21, STREAM = 30;
 
-	Socket				socket;
-	ObjectInputStream	sInput;
-	ObjectOutputStream	sOutput;
-	int					msgCount	= 0;
-	long				t			= 0;
-	int					id;
+	Socket             socket;
+	ObjectInputStream  sInput;
+	ObjectOutputStream sOutput;
+	int  msgCount = 0;
+	long t        = 0;
+	int id;
 
-	String				username;
+	String username;
 	// the only type of message a will receive
 	// MsgObject msgObj;
 	// the date I connect
 	//sdf.format(new Date())
-	String				date;
+	String date;
 
-	DbDataObject dbData		= null;
+	DbDataObject dbData = null;
 
-	private int			uniqueId;
-	MsgObject			msgObj		= new MsgObject();
+	private int uniqueId;
+	MsgObject msgObj = new MsgObject();
 
 	// Constructor
 	public ClientThread(Socket socket) {
@@ -78,7 +78,7 @@ public class ClientThread extends Thread {
 		ConnectionDeamon(this.socket);
 		boolean keepGoing = true;
 		try {// (
-				// create output first
+			// create output first
 			/* ObjectOutputStream */
 			sOutput = new ObjectOutputStream(socket.getOutputStream());
 			sOutput.flush();
@@ -89,12 +89,12 @@ public class ClientThread extends Thread {
 			// MsgObject msgObj = null;
 			while (!socket.isClosed()) {
 				// read a String (which is an object)
-				if(!keepGoing) break;
+				if (!keepGoing) break;
 				if (!socket.isClosed()) {
-				//msgObj = (MsgObject) sInput.readObject();
-				readObject(msgObj);
+					//msgObj = (MsgObject) sInput.readObject();
+					readObject(msgObj);
 
-				msgResponder(msgObj);
+					msgResponder(msgObj);
 				}
 				keepGoing = false;
 				// if(msgObj.msgQuit()) break;
@@ -183,7 +183,7 @@ public class ClientThread extends Thread {
 
 	private void StartControlStream(MsgObject msgObj) {
 
-		 sendObject(msgObj);
+		sendObject(msgObj);
 	}
 
 	synchronized private void getSql(MsgObject msgObj) {
@@ -226,13 +226,16 @@ public class ClientThread extends Thread {
 		// try to close the connection
 		try {
 			if (sOutput != null) sOutput.close();
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		try {
 			if (sInput != null) sInput.close();
-		} catch (Exception e) {}
-        try {
+		} catch (Exception e) {
+		}
+		try {
 			if (socket != null) socket.close();
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 
 		synchronized (this) {
 			this.notify();

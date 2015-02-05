@@ -7,21 +7,21 @@ import jssc.SerialPortException;
 import syncron.sock.client.SocketClientThread;
 
 public class SerialThread extends Thread {
-	public static String[]	data		= null;
-	public static int[]		dataInt		= null;
-	public static boolean	isReady		= false;
-	public static boolean	gotData		= false;
-	public static boolean	isListening	= false;
-	static SerialPort		serialPort	= new SerialPort("COM4");
-	public static int		i			= 0;
-	public static int		avail		= 0;
-	public static int[]				mAnalogVals				= new int[12];
+	public static String[]   data          = null;
+	public static int[]      dataInt       = null;
+	public static boolean    isReady       = false;
+	public static boolean    gotData       = false;
+	public static boolean    isListening   = false;
+	static        SerialPort serialPort    = new SerialPort("COM4");
+	public static int        i             = 0;
+	public static int        avail         = 0;
+	public static int[]      mAnalogVals   = new int[12];
 	// Analog input values
-	public int[]			analogVals	= null;
-	public static String			mAnalogString			= null;
+	public        int[]      analogVals    = null;
+	public static String     mAnalogString = null;
 	// Digital inputs/outputs
-	public static boolean[]	digiInput	= new boolean[10];
-	public static boolean[]	digiOutput	= new boolean[10];
+	public static boolean[]  digiInput     = new boolean[10];
+	public static boolean[]  digiOutput    = new boolean[10];
 
 	public static void setIO() {
 
@@ -72,7 +72,8 @@ public class SerialThread extends Thread {
 				StringBuffer sb = new StringBuffer();
 				try {
 					Thread.sleep(30);
-					Outer: while (serialPort.getInputBufferBytesCount() > 0) {
+					Outer:
+					while (serialPort.getInputBufferBytesCount() > 0) {
 
 						temp = serialPort.readString(1);
 						if (temp.equals("<")) {
@@ -114,7 +115,7 @@ public class SerialThread extends Thread {
 
 					// Send data to socket thread
 					setAnalogString(temp);
-					mAnalogVals =  dataInt;
+					mAnalogVals = dataInt;
 //					SocketClientThread.setAnalogVals(dataInt);
 
 					// System.out.println("sending data int to socket thread");
@@ -186,7 +187,7 @@ public class SerialThread extends Thread {
 					// TODO
 					e1.printStackTrace();
 				}
-				/*
+			    /*
 				 * while (!isReady) { try { Thread.sleep(10); } catch
 				 * (InterruptedException e) { // TODO e.printStackTrace(); } };
 				 */
@@ -218,7 +219,7 @@ public class SerialThread extends Thread {
 	}
 
 	/**
-	 * @param digiOutput2
+	 * @param out
 	 */
 	private static String toString(boolean[] out) {
 		StringBuffer sb = new StringBuffer();
@@ -231,15 +232,16 @@ public class SerialThread extends Thread {
 	 * @return object analogVals of type int[]
 	 */
 	public static synchronized int[] getAnalogVals() {
-		return  mAnalogVals;
+		return mAnalogVals;
 	}
 
 	/**
 	 * @param analogVals the analogVals to set
 	 */
 	public static synchronized void setAnalogVals(int[] analogVals) {
-		 mAnalogVals = analogVals;
+		mAnalogVals = analogVals;
 	}
+
 	public static synchronized String getAnalogString() {
 		return mAnalogString;
 	}
@@ -256,6 +258,7 @@ public class SerialThread extends Thread {
 	// SerialEventTest.digiInput = digiInput;
 	//
 	// }
+
 	/**
 	 * @return the digiInput
 	 */
@@ -264,8 +267,7 @@ public class SerialThread extends Thread {
 	}
 
 	/**
-	 * @param digiInput
-	 *            the digiInput to set
+	 * @param digiInput the digiInput to set
 	 */
 	public static synchronized void setDigiInput(boolean[] digiInput) {
 		SerialThread.digiInput = digiInput;
@@ -279,8 +281,7 @@ public class SerialThread extends Thread {
 	}
 
 	/**
-	 * @param digiOutput
-	 *            the digiOutput to set
+	 * @param digiOutput the digiOutput to set
 	 */
 	public static synchronized void setDigiOutput(boolean[] digiOutput) {
 		SerialThread.digiOutput = digiOutput;

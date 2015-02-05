@@ -11,24 +11,25 @@ import java.util.Date;
 public class MessageServer {
 
 	ServerController controller = ServerController.getInstance();
-	public    SimpleDateFormat		sdf = new SimpleDateFormat("HH:mm:ss");
-	public static String IP = "192.168.1.109";
-	public static int port = 6005;
+	public        SimpleDateFormat sdf  = new SimpleDateFormat("HH:mm:ss");
+	public static String           IP   = "192.168.1.109";
+	public static int              port = 6005;
 	public static ServerSocket serverSock;
 	public static Socket socket;
 	public static MessageWrapper msg;
-	public static int count =  0;
+	public static int count = 0;
 
 	// Start server
 	// ///////////////////////////////////////////////////////////////////////////////////
 
 	public static void main(String[] args) {
-		try {SimpleDateFormat		sdf = new SimpleDateFormat("HH:mm:ss");
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 			serverSock = new ServerSocket(port);
 			for (count = 0; count < 100; count++) {
 				System.out.println("waiting for clients to connect");
 				Socket socket = serverSock.accept();
-				System.out.println("Client connected"+"[" + sdf.format(new Date()) + "]");
+				System.out.println("Client connected" + "[" + sdf.format(new Date()) + "]");
 
 				ObjectMessengerThread messenger = new ObjectMessengerThread(
 						socket);

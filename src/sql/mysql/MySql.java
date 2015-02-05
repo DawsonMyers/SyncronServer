@@ -19,8 +19,6 @@ public class MySql {
 		String password = "dawson";
 
 
-
-
 		// create a new instance of SimpleMySQL
 		// SimpleMySQL mysql;
 		// mysql = new SimpleMySQL();
@@ -92,12 +90,9 @@ public class MySql {
 		 rsArray = result.FetchArray();*/
 
 
-
 		///////////////////////////////////////////////////////////
 //		Map<String, String> rsMap= result.FetchAssoc();
 //		String[] rsArray = result.FetchArray();
-
-
 
 
 		////////////////////////////////////////////////////////////

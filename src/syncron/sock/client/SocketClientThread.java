@@ -22,48 +22,48 @@ import syncron.utils.obj.sock.MsgObject;
 // import engine.MySqlSocketTester;
 // SocketClientThread.isDataReady()
 public class SocketClientThread extends Thread {
-	public static final int			TEST					= 0, STATUS = 2, SUCCESS = 10, FAIL = 11, QUIT = 20;
-	public static final int			SQL						= 20, TESTSQL = 21;
-	public static final int			STREAM					= 30;
+	public static final int TEST = 0, STATUS = 2, SUCCESS = 10, FAIL = 11, QUIT = 20;
+	public static final int SQL = 20, TESTSQL = 21;
+	public static final int STREAM  = 30;
 	// Device identifiers
-	public static final int			ANDROID					= 100, PC = 105, SERVER = 110, NODE = 115;
-	public static final String		QUERY4					= "SELECT * FROM DataLive", QUERY5 = "SELECT * FROM log LIMIT 50";
+	public static final int ANDROID = 100, PC = 105, SERVER = 110, NODE = 115;
+	public static final String QUERY4 = "SELECT * FROM DataLive", QUERY5 = "SELECT * FROM log LIMIT 50";
 
 	// to display time
-	private SimpleDateFormat		sdf;
+	private SimpleDateFormat sdf;
 
-	public static Socket			requestSocket;
-	ObjectOutputStream				out;
-	ObjectInputStream				in;
-	ObjectOutputStream				outMsg;
-	ObjectInputStream				inMsg;
-	String							message, query;
+	public static Socket requestSocket;
+	ObjectOutputStream out;
+	ObjectInputStream  in;
+	ObjectOutputStream outMsg;
+	ObjectInputStream  inMsg;
+	String             message, query;
 
-	public static MsgObject			msgObj					= new MsgObject();
+	public static MsgObject msgObj = new MsgObject();
 
-	public boolean					quit					= false;
-	private boolean[]				digitalInput;
-	private static boolean[]		digitalOutput			= new boolean[10];
-	public static boolean			mDataReady				= false;
-	public static boolean			mCmdReady				= false;
-	public static int[]				mAnalogVals				= null;
-	public static String			mAnalogString			= null;
-	public static MsgObject			mMsg					= new MsgObject();
+	public boolean quit = false;
+	private boolean[] digitalInput;
+	private static boolean[]      digitalOutput        = new boolean[10];
+	public static  boolean        mDataReady           = false;
+	public static  boolean        mCmdReady            = false;
+	public static  int[]          mAnalogVals          = null;
+	public static  String         mAnalogString        = null;
+	public static  MsgObject      mMsg                 = new MsgObject();
 	// UDP Socket
-	public static DatagramSocket	udpSocket				= null;
-	public static InetAddress		receiverAddress			= null;
-	public static int				UdpBufferLength			= 49;
-	public static byte[]			UdpBuffer				= new byte[UdpBufferLength];
-	public static int				UdpInputBufferLength	= 10;
-	public static byte[]			UdpInputBuffer			= new byte[UdpInputBufferLength];
-	public static String			UdpInputBufferString	= new String(UdpInputBuffer);
-	public static int				udpPort					= 10000;
-	public static int				udpInputPort			= 10005;
-	public static String			serverIP				= "192.168.1.109";
-	public static Thread			udpListenerThread		= null;
-	public static String syncronIP = "192.163.250.179";
-	public static String IP = serverIP ;//syncronIP;
-	
+	public static  DatagramSocket udpSocket            = null;
+	public static  InetAddress    receiverAddress      = null;
+	public static  int            UdpBufferLength      = 49;
+	public static  byte[]         UdpBuffer            = new byte[UdpBufferLength];
+	public static  int            UdpInputBufferLength = 10;
+	public static  byte[]         UdpInputBuffer       = new byte[UdpInputBufferLength];
+	public static  String         UdpInputBufferString = new String(UdpInputBuffer);
+	public static  int            udpPort              = 10000;
+	public static  int            udpInputPort         = 10005;
+	public static  String         serverIP             = "192.168.1.109";
+	public static  Thread         udpListenerThread    = null;
+	public static  String         syncronIP            = "192.163.250.179";
+	public static  String         IP                   = serverIP;//syncronIP;
+
 	// /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// [UDP]
 	public synchronized static void initUDP() throws SocketException, UnknownHostException {
@@ -201,7 +201,7 @@ public class SocketClientThread extends Thread {
 					setDataReady(false);
 				} else // System.out.println("msg not successfull");
 
-				mDataReady = false;
+					mDataReady = false;
 				// synchronized (this) {
 				// this.notify();
 				// }
@@ -277,8 +277,7 @@ public class SocketClientThread extends Thread {
 	}
 
 	/**
-	 * @param msgObj
-	 *            the msgObj to set
+	 * @param msgObj the msgObj to set
 	 */
 	public static synchronized void setmsgObj(MsgObject msgObj) {
 		SocketClientThread.msgObj = msgObj;
@@ -296,6 +295,7 @@ public class SocketClientThread extends Thread {
 
 	// /////////////////////////////////////////////////////////////////////////////
 	// Control
+
 	/**
 	 * @return the mDataReady
 	 */
@@ -304,8 +304,7 @@ public class SocketClientThread extends Thread {
 	}
 
 	/**
-	 * @param mDataReady
-	 *            the mDataReady to set
+	 * @param mDataReady the mDataReady to set
 	 */
 	public static synchronized void setDataReady(boolean mDataReady) {
 		SocketClientThread.mDataReady = mDataReady;
@@ -319,8 +318,7 @@ public class SocketClientThread extends Thread {
 	}
 
 	/**
-	 * @param mCmdReady
-	 *            the mCmdReady to set
+	 * @param mCmdReady the mCmdReady to set
 	 */
 	public static synchronized void setCmdReady(boolean mCmdReady) {
 		SocketClientThread.mCmdReady = mCmdReady;
@@ -349,8 +347,7 @@ public class SocketClientThread extends Thread {
 
 
 	/**
-	 * @param digitalInput
-	 *            the digitalInput to set
+	 * @param digitalInput the digitalInput to set
 	 */
 	public synchronized void setDigitalInput(boolean[] digitalInput) {
 		this.digitalInput = digitalInput;
@@ -365,15 +362,14 @@ public class SocketClientThread extends Thread {
 	}
 
 	/**
-	 * @param digitalOutput
-	 *            the digitalOutput to set
+	 * @param digitalOutput the digitalOutput to set
 	 */
 	public synchronized void setDigitalOutput(boolean[] digitalOutput) {
 		SocketClientThread.digitalOutput = digitalOutput;
 	}
 
 	public static synchronized String getUdpInputBufferString() {
-		return UdpInputBufferString	= new String(UdpInputBuffer);
+		return UdpInputBufferString = new String(UdpInputBuffer);
 	}
 
 	public static synchronized void setUdpInputBufferString(String udpInputBufferString) {
@@ -396,6 +392,7 @@ public class SocketClientThread extends Thread {
 	 * msgObj.digitalOutput = digitalOutput; }
 	 */
 	// ///////////////////////////////////////////////////////////////////////////////
+
 	/**
 	 * @return the msgObj
 	 */
@@ -404,8 +401,7 @@ public class SocketClientThread extends Thread {
 	}
 
 	/**
-	 * @param msgObj
-	 *            the msgObj to set
+	 * @param msgObj the msgObj to set
 	 */
 	public static synchronized void setMsg(MsgObject msgObj) {
 		SocketClientThread.msgObj = msgObj;
@@ -421,13 +417,16 @@ public class SocketClientThread extends Thread {
 		// try to close the connection
 		try {
 			if (out != null) out.close();
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		try {
 			if (in != null) in.close();
-		} catch (Exception e) {}
-        try {
+		} catch (Exception e) {
+		}
+		try {
 			if (requestSocket != null) requestSocket.close();
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 
 		synchronized (this) {
 			this.notify();

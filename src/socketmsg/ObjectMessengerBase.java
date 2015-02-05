@@ -11,9 +11,10 @@ import java.net.Socket;
 public class ObjectMessengerBase extends Thread implements IMessenger {
 	public MessageWrapper msg;
 	public ObjectStreamer os;
-	public long msgTime = 0;
-	public MsgTimer timer = new MsgTimer();
-	static String threadName="ObjectMsgThread";
+	public long     msgTime    = 0;
+	public MsgTimer timer      = new MsgTimer();
+	static String   threadName = "ObjectMsgThread";
+
 	// public static void main(String[] args) {
 	//
 	// }
@@ -21,7 +22,7 @@ public class ObjectMessengerBase extends Thread implements IMessenger {
 		super(threadName);
 		os = new ObjectStreamer();
 	}
-	
+
 
 	public ObjectMessengerBase(String ip, int port) {
 		os = new ObjectStreamer(ip, port);
@@ -51,8 +52,8 @@ public class ObjectMessengerBase extends Thread implements IMessenger {
 		ObjectOutputStream out;
 		public int port;
 		public String ipAdress;
-		public String IP = "192.168.1.109";
-		public int serverPort = 6005;
+		public String IP         = "192.168.1.109";
+		public int    serverPort = 6005;
 
 		// send/receive message objects
 		// ///////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +104,7 @@ public class ObjectMessengerBase extends Thread implements IMessenger {
 			}
 		}
 
-		
+
 		// use if member data was manually set
 		public void connectServer() {
 			try { // Server -> create output first
@@ -132,33 +133,33 @@ public class ObjectMessengerBase extends Thread implements IMessenger {
 
 		// only used when being used as a bundle to hold all the stream objects
 		public ObjectStreamer(Socket socket, ObjectInputStream in,
-				ObjectOutputStream out) {
+		                      ObjectOutputStream out) {
 			setStreams(socket, in, out);
 		}
 
 		public ObjectStreamer(int port, ObjectInputStream in,
-				ObjectOutputStream out) {
+		                      ObjectOutputStream out) {
 			setStreams(port, in, out);
 		}
 
 		// set members streams
 		// ///////////////////////////////////////////////////////////////////////////////////
 		public void setStreams(Socket socket, ObjectInputStream in,
-				ObjectOutputStream out) {
+		                       ObjectOutputStream out) {
 			this.socket = socket;
 			this.in = in;
 			this.out = out;
 		}
 
 		public void setStreams(int port, ObjectInputStream in,
-				ObjectOutputStream out) {
+		                       ObjectOutputStream out) {
 			this.port = port;
 			this.in = in;
 			this.out = out;
 		}
 
 		public void getStreams(Socket socket, ObjectInputStream in,
-				ObjectOutputStream out) {
+		                       ObjectOutputStream out) {
 			socket = this.socket;
 			in = this.in;
 			out = this.out;
@@ -181,9 +182,12 @@ public class ObjectMessengerBase extends Thread implements IMessenger {
 		}
 
 	}
+
 	//	thread locking object
-public class ObjLock { 
-	int lockId = 0;
-	public ObjLock(){}
-    }
+	public class ObjLock {
+		int lockId = 0;
+
+		public ObjLock() {
+		}
+	}
 }

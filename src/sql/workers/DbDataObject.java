@@ -7,22 +7,23 @@ import java.io.Serializable;
 
 /**
  * @author Dawson
- *	processes sql query result into an organized structure
+ *         processes sql query result into an organized structure
  */
-public class  DbDataObject extends DbVariables implements Serializable {
+public class DbDataObject extends DbVariables implements Serializable {
 
 	/**
-	 *	Process sql
+	 * Process sql
 	 */
 	public DbBundle dbBundle;
 	private static final long serialVersionUID = 12L;
+
 	public DbDataObject() {
 		// TODO Auto-generated constructor stub
 		// super();
 		// colLabels[0] ="";
 	}
 
-	public void loadDbBundel(){
+	public void loadDbBundel() {
 //		dbBundle.alRowList = dbData.alRowList;
 //		dbBundle.colLabels = dbData.colLabels;
 //		dbBundle.columns = dbData.columns;
@@ -30,6 +31,7 @@ public class  DbDataObject extends DbVariables implements Serializable {
 //		dbBundle.RowList = dbData.RowList;
 //		dbBundle.rsMap = dbData.rsMap;
 	}
+
 	public void printData() {
 		String rowData = "";
 		int j = 0;
@@ -63,8 +65,10 @@ public class  DbDataObject extends DbVariables implements Serializable {
 		rowData = getRowDataString();
 		return rowData;
 	}
+
 	/**
 	 * Converts all the data from the resultset to a single string
+	 *
 	 * @return
 	 */
 	public String getRowDataString() {

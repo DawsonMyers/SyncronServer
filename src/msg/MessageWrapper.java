@@ -7,20 +7,20 @@ import java.io.Serializable;
  */
 public class MessageWrapper implements Serializable, MsgConstants {
 	/**
-	 * 
+	 *
 	 */
-	private static final long	serialVersionUID	= 1L;
-	public int					mMsgId, mObjectId, mUserId, mActionId, mStatus;
-	public int					mRequestId;
-	public String[]				mStringsArgs;
-	public int[]				mIntArgs;
-	public String				mIntent;
-	public MessageObject		messageObj			= new MessageObject();
+	private static final long serialVersionUID = 1L;
+	public int mMsgId, mObjectId, mUserId, mActionId, mStatus;
+	public int      mRequestId;
+	public String[] mStringsArgs;
+	public int[]    mIntArgs;
+	public String   mIntent;
+	public MessageObject messageObj = new MessageObject();
 
-	public Long					mTime;
+	public Long mTime;
 
-	public Object				mMsgObject;
-	private String				mQuery;
+	public  Object mMsgObject;
+	private String mQuery;
 
 	// main
 	// ///////////////////////////////////////////////////////////////////////////////////

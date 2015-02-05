@@ -11,14 +11,14 @@ import java.util.Date;
 public class MessageServerThread extends Thread {
 
 
-	ServerController				controller	= ServerController.getInstance();
-	public SimpleDateFormat			sdf			= new SimpleDateFormat("HH:mm:ss");
-	public static String			IP			= "192.168.1.109";
-	public static int				port		= 6004;
-	public static ServerSocket		serverSock;
-	public static Socket			socket;
-	public static MessageWrapper	msg;
-	public static int				count		= 0;
+	ServerController controller = ServerController.getInstance();
+	public        SimpleDateFormat sdf  = new SimpleDateFormat("HH:mm:ss");
+	public static String           IP   = "192.168.1.109";
+	public static int              port = 6004;
+	public static ServerSocket   serverSock;
+	public static Socket         socket;
+	public static MessageWrapper msg;
+	public static int count = 0;
 
 
 	public MessageServerThread() {
@@ -59,17 +59,20 @@ public class MessageServerThread extends Thread {
 
 				} catch (Exception e1) {
 					e1.printStackTrace();
-					System.out.println("[ERROR - " + (new SimpleDateFormat("MMM-dd HH.mm.ss.SSS")).format(new Date()) + "] -> [MessageServerThread::run]TYPE = Exception | VAR = e1");
+					System.out.println("[ERROR - " + (new SimpleDateFormat("MMM-dd HH.mm.ss.SSS")).format(
+							new Date()) + "] -> [MessageServerThread::run]TYPE = Exception | VAR = e1");
 				}
 			}
 
 			System.out.println("terminating");
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			System.out.println("[ERROR - " + (new SimpleDateFormat("MMM-dd HH.mm.ss.SSS]")).format(new Date()) + " -> [MessageServerThread::run]TYPE = IOException | VAR = e1");
+			System.out.println("[ERROR - " + (new SimpleDateFormat("MMM-dd HH.mm.ss.SSS]")).format(
+					new Date()) + " -> [MessageServerThread::run]TYPE = IOException | VAR = e1");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("[ERROR - " + (new SimpleDateFormat("MMM-dd HH.mm.ss.SSS]")).format(new Date()) + " -> [MessageServerThread::run]TYPE = Exception | VAR = e1");
+			System.out.println("[ERROR - " + (new SimpleDateFormat("MMM-dd HH.mm.ss.SSS]")).format(
+					new Date()) + " -> [MessageServerThread::run]TYPE = Exception | VAR = e1");
 		} finally {
 			synchronized (this) {
 				this.notify();

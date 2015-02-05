@@ -9,10 +9,9 @@ import msg.SqlMachine;
 
 /**
  * @author Dawson
- *
  */
 public class DataHandler {
-	ServerController	controller	= ServerController.getInstance();
+	ServerController controller = ServerController.getInstance();
 
 
 	// controller data interface
@@ -30,7 +29,7 @@ public class DataHandler {
 			msgData = new NodeMsgData();
 		}
 		return msgData;
-				
+
 	}
 
 	public synchronized void getNodeData(NodeMsgData nodeMsgData) {
@@ -65,7 +64,7 @@ public class DataHandler {
 	}
 
 	public synchronized int[] getAnalogArray() {
-		return  NodeData.getAnalogVals();
+		return NodeData.getAnalogVals();
 	}
 
 }

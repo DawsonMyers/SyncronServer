@@ -12,96 +12,96 @@ import msg.NodeMsgData;
  */
 public class NodeData implements Serializable {
 
-// Analog input values
-public static int[]     analogVals   = null;
-public static String analogString = "";
-// Digital inputs/outputs
-public static boolean[] digitalInput = null;
+	// Analog input values
+	public static int[]     analogVals   = null;
+	public static String    analogString = "";
+	// Digital inputs/outputs
+	public static boolean[] digitalInput = null;
 
-//public static String analogString = null;
-public static  boolean[]   digitalOutput = null;
-public static  NodeMsgData nodeMsgData   = new NodeMsgData();
+	//public static String analogString = null;
+	public static boolean[]   digitalOutput = null;
+	public static NodeMsgData nodeMsgData   = new NodeMsgData();
 
 
-/**
- * @return object analogVals of type int[]
- */
-public static synchronized int[] getAnalogVals() {
-	return analogVals;
-}
-
-/**
- * @param analogVals the analogVals to set
- */
-public static synchronized void setAnalogVals(int[] analogVals) {
-	if (analogVals != null)
-		NodeData.analogVals = analogVals;
-}
-
-/**
- * @return object analogVals of type int[]
- */
-public static synchronized String getAnalogString() {
-	if (analogVals != null) {
-		for (int i = 0; i < analogVals.length; i++) {
-			analogString += analogVals[i] + "\t";
-		}
+	/**
+	 * @return object analogVals of type int[]
+	 */
+	public static synchronized int[] getAnalogVals() {
+		return analogVals;
 	}
-	return analogString;
-}
 
-/**
- * @return analogString of type String
- */
-public static synchronized void setAnalogString(String analogString) {
-	analogString = analogString;
-}
+	/**
+	 * @param analogVals the analogVals to set
+	 */
+	public static synchronized void setAnalogVals(int[] analogVals) {
+		if (analogVals != null)
+			NodeData.analogVals = analogVals;
+	}
 
-/**
- * @return object digitalInput of type boolean[]
- */
-public static synchronized boolean[] getDigitalInput() {
-	return digitalInput;
-}
+	/**
+	 * @return object analogVals of type int[]
+	 */
+	public static synchronized String getAnalogString() {
+		if (analogVals != null) {
+			for (int i = 0; i < analogVals.length; i++) {
+				analogString += analogVals[i] + "\t";
+			}
+		}
+		return analogString;
+	}
 
-/**
- * @param digitalInput the digitalInput to set
- */
-public static synchronized void setDigitalInput(boolean[] digitalInput) {
-	if (digitalInput != null)
-		NodeData.digitalInput = digitalInput;
-}
+	/**
+	 * @return analogString of type String
+	 */
+	public static synchronized void setAnalogString(String analogString) {
+		analogString = analogString;
+	}
 
-/**
- * @return object digitalOutput of type boolean[]
- */
-public static synchronized boolean[] getDigitalOutput() {
-	return digitalOutput;
-}
+	/**
+	 * @return object digitalInput of type boolean[]
+	 */
+	public static synchronized boolean[] getDigitalInput() {
+		return digitalInput;
+	}
 
-/**
- * @param digitalOutput the digitalOutput to set
- */
-public static synchronized void setDigitalOutput(boolean[] digitalOutput) {
-	if (digitalOutput != null)
-		NodeData.digitalOutput = digitalOutput;
-}
+	/**
+	 * @param digitalInput the digitalInput to set
+	 */
+	public static synchronized void setDigitalInput(boolean[] digitalInput) {
+		if (digitalInput != null)
+			NodeData.digitalInput = digitalInput;
+	}
 
-/**
- * @return object nodeMsgData of type NodeMsgData
- */
-public static synchronized NodeMsgData getNodeMsgData() {
-	nodeMsgData.analogVals = analogVals;
-	nodeMsgData.analogString = analogString;
-	nodeMsgData.digitalInput = digitalInput;
-	nodeMsgData.digitalOutput = digitalOutput;
-	return nodeMsgData;
-}
+	/**
+	 * @return object digitalOutput of type boolean[]
+	 */
+	public static synchronized boolean[] getDigitalOutput() {
+		return digitalOutput;
+	}
 
-public void setNodeMsgData(NodeMsgData nodeMsgData) {
-	analogVals = nodeMsgData.analogVals;
-	analogString = nodeMsgData.analogString;
-	digitalInput = nodeMsgData.digitalInput;
-	digitalOutput = nodeMsgData.digitalOutput;
-}
+	/**
+	 * @param digitalOutput the digitalOutput to set
+	 */
+	public static synchronized void setDigitalOutput(boolean[] digitalOutput) {
+		if (digitalOutput != null)
+			NodeData.digitalOutput = digitalOutput;
+	}
+
+	/**
+	 * @return object nodeMsgData of type NodeMsgData
+	 */
+	public static synchronized NodeMsgData getNodeMsgData() {
+		nodeMsgData.analogVals = analogVals;
+		nodeMsgData.analogString = analogString;
+		nodeMsgData.digitalInput = digitalInput;
+		nodeMsgData.digitalOutput = digitalOutput;
+		return nodeMsgData;
+	}
+
+	public void setNodeMsgData(NodeMsgData nodeMsgData) {
+		analogVals = nodeMsgData.analogVals;
+		analogString = nodeMsgData.analogString;
+		digitalInput = nodeMsgData.digitalInput;
+		digitalOutput = nodeMsgData.digitalOutput;
+	}
 }

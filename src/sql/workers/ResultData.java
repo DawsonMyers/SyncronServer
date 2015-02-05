@@ -145,8 +145,7 @@ public class ResultData extends DbVariables { // implements DbDataInterface {
 	}
 
 	/**
-	 * @param pRsObj
-	 *            the rsObj to set
+	 * @param pRsObj the rsObj to set
 	 */
 	public void setRsObj(SimpleMySQLResult pRsObj) {
 		rsObj = pRsObj;
@@ -160,8 +159,7 @@ public class ResultData extends DbVariables { // implements DbDataInterface {
 	}
 
 	/**
-	 * @param pColumns
-	 *            the columns to set
+	 * @param pColumns the columns to set
 	 */
 	public void setColumns(int pColumns) {
 		columns = pColumns;
@@ -175,8 +173,7 @@ public class ResultData extends DbVariables { // implements DbDataInterface {
 	}
 
 	/**
-	 * @param pRowList
-	 *            the rowList to set
+	 * @param pRowList the rowList to set
 	 */
 	public void setRowList(ArrayList<String[]> pRowList) {
 		RowList = pRowList;
@@ -190,16 +187,14 @@ public class ResultData extends DbVariables { // implements DbDataInterface {
 	}
 
 	/**
-	 * @param pAlRowList
-	 *            the alRowList to set
+	 * @param pAlRowList the alRowList to set
 	 */
 	public void setAlRowList(ArrayList<Map<String, String>> pAlRowList) {
 		alRowList = pAlRowList;
 	}
 
 	/**
-	 * @param pColLabels
-	 *            the colLabels to set
+	 * @param pColLabels the colLabels to set
 	 */
 	public void setColLabels(String[] pColLabels) {
 		colLabels = pColLabels;

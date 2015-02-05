@@ -6,11 +6,11 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ObjectMessengerThread extends ObjectMessengerBase implements MsgConstants{
+public class ObjectMessengerThread extends ObjectMessengerBase implements MsgConstants {
 	// MessageWrapper msg = new MessageWrapper();
-	public boolean mode = false;
-	public String ip = "192.168.1.109";
-	public int serverPort = 6005;
+	public boolean mode       = false;
+	public String  ip         = "192.168.1.109";
+	public int     serverPort = 6005;
 	public Socket socket;
 	public ObjLock objLock = new ObjLock();
 
@@ -38,7 +38,7 @@ public class ObjectMessengerThread extends ObjectMessengerBase implements MsgCon
 	// Send/receive message
 	// ///////////////////////////////////////////////////////////////////////////////////
 	public MessageWrapper sendReqest(MessageWrapper msg,
-			String ip, int port) {
+	                                 String ip, int port) {
 		this.ip = ip;
 		this.serverPort = port;
 		this.msg = msg;
@@ -62,7 +62,7 @@ public class ObjectMessengerThread extends ObjectMessengerBase implements MsgCon
 		this.msg = msg;
 		this.start();
 	}
-	
+
 	// Run
 	// ///////////////////////////////////////////////////////////////////////////////////
 	// either send-receive (client) or receive-send (server)
@@ -70,7 +70,7 @@ public class ObjectMessengerThread extends ObjectMessengerBase implements MsgCon
 		try {
 			if (socket == null) {
 				//	client request
-				
+
 				os.connectClient(ip, serverPort);
 				//MessageWrapper msg = new MessageWrapper();
 				//msg.mStatus = 0;
@@ -84,7 +84,7 @@ public class ObjectMessengerThread extends ObjectMessengerBase implements MsgCon
 				//	server response
 				os.connectServer(socket);
 				msg = os.readMessage();
-				if(msg.getQuery().length() < 5) msg.setRequestId(STREAM); 
+				if (msg.getQuery().length() < 5) msg.setRequestId(STREAM);
 				MsgResponseHandler msgHandler = new MsgResponseHandler(msg);
 				msg.mStatus = MessageServerThread.getCount();
 				System.out.println("Message #" + msg.mStatus);
@@ -101,7 +101,8 @@ public class ObjectMessengerThread extends ObjectMessengerBase implements MsgCon
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("[ERROR - " + (new SimpleDateFormat("HH:mm:ss")).format(new Date()) + "] -> [ObjectMessengerThread::run]TYPE = Exception | VAR = e");
+			System.out.println("[ERROR - " + (new SimpleDateFormat("HH:mm:ss")).format(
+					new Date()) + "] -> [ObjectMessengerThread::run]TYPE = Exception | VAR = e");
 		}
 	}
 

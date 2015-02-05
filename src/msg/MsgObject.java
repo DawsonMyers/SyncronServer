@@ -8,15 +8,15 @@ public class MsgObject implements Serializable, MsgConstants {
 	/**
 	 *
 	 */
-	private static final long	serialVersionUID	= 1L;
-	public String				SenderID, ResponderID, DeviceType;
+	private static final long serialVersionUID = 1L;
+	public String SenderID, ResponderID, DeviceType;
 	// Protocol constants
-	public static final int		TEST				= 0, STATUS = 2, SUCCESS = 10, FAIL = 11, QUIT = 20;
-	public static final int		SQL					= 20, TESTSQL = 21;
-	public static final int		STREAM				= 30;
+	public static final int TEST = 0, STATUS = 2, SUCCESS = 10, FAIL = 11, QUIT = 20;
+	public static final int SQL = 20, TESTSQL = 21;
+	public static final int STREAM  = 30;
 	// Device identifiers
-	public static final int		ANDROID				= 100, PC = 105, SERVER = 110, NODE = 115;
-	public static final String	QUERY4				= "SELECT * FROM DataLive", QUERY5 = "SELECT * FROM log LIMIT 50";
+	public static final int ANDROID = 100, PC = 105, SERVER = 110, NODE = 115;
+	public static final String QUERY4 = "SELECT * FROM DataLive", QUERY5 = "SELECT * FROM log LIMIT 50";
 
 	/**
 	 * @return the sql
@@ -26,26 +26,26 @@ public class MsgObject implements Serializable, MsgConstants {
 	}
 
 	// Analog input values
-	public int[]							analogVals		= null;
+	public int[]     analogVals    = null;
 	// Digital inputs/outputs
-	public boolean							keepStreaming	= false;
-	public boolean[]						digitalInput	= null;
+	public boolean   keepStreaming = false;
+	public boolean[] digitalInput  = null;
 
-	public boolean[]						digitalOutput	= null;
+	public  boolean[] digitalOutput = null;
 	// Message intent member that will store the protocol constant
-	public int								mIntent			= 0;
-	private int								mStatus			= 0;
+	public  int       mIntent       = 0;
+	private int       mStatus       = 0;
 	// Sql string to be used as a query to the Db
-	public String							sqlQuery		= QUERY5, testString = "";
+	public  String    sqlQuery      = QUERY5, testString = "";
 	// members to store data returned from a query
-	public int								columns			= 0;
-	public String[]							colLabels		= null;
-	public ArrayList<String[]>				RowList			= new ArrayList<String[]>();
-	public ArrayList<Map<String, String>>	alRowList		= new ArrayList<Map<String, String>>();
-	public Map<String, String>				rsRowMap		= null;
-	public Map<String, Map>					rsMap			= null;
-	public String[]							rsRowArray		= null;
-	public String							rowData			= "";
+	public int                            columns    = 0;
+	public String[]                       colLabels  = null;
+	public ArrayList<String[]>            RowList    = new ArrayList<String[]>();
+	public ArrayList<Map<String, String>> alRowList  = new ArrayList<Map<String, String>>();
+	public Map<String, String>            rsRowMap   = null;
+	public Map<String, Map>               rsMap      = null;
+	public String[]                       rsRowArray = null;
+	public String                         rowData    = "";
 
 	public synchronized int[] getAnalogVals() {
 		return this.analogVals.clone();
@@ -63,8 +63,7 @@ public class MsgObject implements Serializable, MsgConstants {
 	}
 
 	/**
-	 * @param digitalInput
-	 *            the digitalInput to set
+	 * @param digitalInput the digitalInput to set
 	 */
 	public synchronized void setDigitalInput(boolean[] digitalInput) {
 		this.digitalInput = digitalInput;
@@ -78,8 +77,7 @@ public class MsgObject implements Serializable, MsgConstants {
 	}
 
 	/**
-	 * @param digitalOutput
-	 *            the digitalOutput to set
+	 * @param digitalOutput the digitalOutput to set
 	 */
 	public synchronized void setDigitalOutput(boolean[] digitalOutput) {
 		this.digitalOutput = digitalOutput;
@@ -127,8 +125,7 @@ public class MsgObject implements Serializable, MsgConstants {
 	}
 
 	/**
-	 * @param pMsgIntent
-	 *            the msgIntent to set
+	 * @param intent the msgIntent to set
 	 */
 	public void setIntent(int intent) {
 		this.mIntent = intent;

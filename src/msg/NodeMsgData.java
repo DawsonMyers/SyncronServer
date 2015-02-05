@@ -6,16 +6,16 @@ package msg;
 import java.io.Serializable;
 
 /**
- * @author Dawson 
+ * @author Dawson
  */
-public class NodeMsgData implements Serializable  {
+public class NodeMsgData implements Serializable {
 	/**
-	 * 
+	 *
 	 */
-	private static final long	serialVersionUID	= 1L;
+	private static final long   serialVersionUID = 1L;
 	// Analog input values
-	public int[] analogVals = null;
-	public String analogString = "";
+	public               int[]  analogVals       = null;
+	public               String analogString     = "";
 
 	// Digital inputs/outputs
 	public boolean[] digitalInput = null;
